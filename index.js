@@ -132,6 +132,19 @@ async function readDirRecursiveAsync(dirpath, options) {
     return resArray;
 }
 
+async function unlinkAsync(filpath) {
+    return new Promise((resolve, reject) => {
+        fs.unlink(filpath, (err) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(true);
+            }
+        })
+    });
+}
+
 module.exports = {
     existsAsync,
     statAsync,
@@ -141,5 +154,6 @@ module.exports = {
     writeFileAsync,
     readFileAsync,
     readDirAsync,
-    readDirRecursiveAsync
+    readDirRecursiveAsync,
+    unlinkAsync
 }
