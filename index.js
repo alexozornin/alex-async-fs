@@ -62,6 +62,7 @@ async function rmdirRecursiveAsync(dirpath) {
         let stats = await statAsync(currentPath);
         if (stats.isDirectory()) {
             await rmdirRecursiveAsync(currentPath);
+            await rmdirAsync(currentPath);
         }
         else {
             await unlinkAsync(currentPath);
@@ -165,6 +166,7 @@ module.exports = {
     statAsync,
     mkdirAsync,
     rmdirAsync,
+    rmdirRecursiveAsync,
     providePathAsync,
     writeFileAsync,
     readFileAsync,
