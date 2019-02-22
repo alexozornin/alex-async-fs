@@ -55,6 +55,21 @@ async function rmdirAsync(dirpath) {
     });
 }
 
+async function rmdirRecursiveAsync(dirpath) {
+    let files = await readDirAsync(dirpath);
+    for (let i in files) {
+        let currentPath = path.join(dirpath, files[i]);
+        let stats = await statAsync(currentPath);
+        if (stats.isDirectory()) {
+            await rmdirRecursiveAsync(currentPath);
+        }
+        else {
+            await unlinkAsync(currentPath);
+        }
+    }
+    return;
+}
+
 async function providePathAsync(filepath, mode) {
     let paths = filepath.split(path.sep);
     let currentPath = '';
