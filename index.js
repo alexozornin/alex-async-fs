@@ -97,6 +97,19 @@ async function readFileAsync(filepath, options) {
     });
 }
 
+async function renameAsync(oldPath, newPath) {
+    return new Promise((resolve, reject) => {
+        fs.rename(oldPath, newPath, (err) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(true);
+            }
+        })
+    });
+}
+
 async function readDirAsync(dirpath, options) {
     return new Promise((resolve, reject) => {
         fs.readdir(dirpath, options, (err, files) => {
@@ -139,6 +152,7 @@ module.exports = {
     rmdirAsync,
     providePathAsync,
     writeFileAsync,
+    renameAsync,
     readFileAsync,
     readDirAsync,
     readDirRecursiveAsync
