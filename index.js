@@ -61,7 +61,7 @@ async function clearDirRecursiveAsync(dirpath) {
         let currentPath = path.join(dirpath, files[i]);
         let stats = await statAsync(currentPath);
         if (stats.isDirectory()) {
-            await rmdirRecursiveAsync(currentPath);
+            await clearDirRecursiveAsync(currentPath);
             await rmdirAsync(currentPath);
         }
         else {
