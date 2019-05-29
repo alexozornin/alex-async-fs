@@ -132,7 +132,7 @@ async function renameAsync(oldPath, newPath) {
     });
 }
 
-async function copyAsync(srcPath, dstPath) {
+async function copyFileAsync(srcPath, dstPath) {
     return new Promise((resolve, reject) => {
         fs.copyFile(srcPath, dstPath, (err) => {
             if (err) {
@@ -203,7 +203,7 @@ module.exports = {
     providePathAsync,
     writeFileAsync,
     renameAsync,
-    copyAsync,
+    copyFileAsync,
     readFileAsync,
     readDirAsync,
     readDirRecursiveAsync,
