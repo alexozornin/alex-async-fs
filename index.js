@@ -79,8 +79,8 @@ async function rmdirRecursiveAsync(dirpath) {
 
 async function providePathAsync(filepath, mode) {
     let paths = filepath.split(path.sep);
-    let currentPath = '';
-    for (let i = 0; i < paths.length - 1; i++) {
+    let currentPath = paths[0];
+    for (let i = 1; i < paths.length - 1; i++) {
         currentPath = path.join(currentPath, paths[i]);
         let stats = await statAsync(currentPath);
         if (!stats) {
